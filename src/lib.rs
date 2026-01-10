@@ -23,12 +23,14 @@
 //! - GitHub: https://github.com/LincanLi98/STG-Mamba
 
 pub mod config;
+pub mod data;
 pub mod layers;
 pub mod models;
 pub mod utils;
 
 // Re-export key types
 pub use config::{ModelConfig, TrainingConfig};
+pub use data::{Asset, AssetFeatures, KrakenClient, PolymarketClient};
 pub use models::{STGMamba, STGMambaConfig};
 
 use burn::backend::{Autodiff, NdArray};

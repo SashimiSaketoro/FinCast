@@ -15,12 +15,12 @@ Cargo.lock
 .DS_Store
 Thumbs.db
 
-# Data files
+# Data files (not source code in src/data/)
 *.csv
 *.npy
 *.npz
-data/
-datasets/
+/data/
+/datasets/
 
 # Model checkpoints
 checkpoints/

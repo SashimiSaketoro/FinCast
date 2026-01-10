@@ -35,6 +35,23 @@ rand = "0.8"
 log = "0.4"
 env_logger = "0.11"
 
+# Async runtime and WebSockets
+tokio = { version = "1.41", features = ["full"] }
+tokio-tungstenite = { version = "0.24", features = ["native-tls"] }
+futures-util = "0.3"
+
+# HTTP client for APIs
+reqwest = { version = "0.12", features = ["json"] }
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# Circular buffer for sequence management
+ringbuffer = "0.15"
+
+# URL parsing
+url = "2.5"
+
 [dev-dependencies]
 approx = "0.5"
 
