@@ -1,0 +1,40 @@
+# Rust
+/target
+**/*.rs.bk
+*.pdb
+Cargo.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data files
+*.csv
+*.npy
+*.npz
+data/
+datasets/
+
+# Model checkpoints
+checkpoints/
+*.pt
+*.safetensors
+
+# Logs
+*.log
+logs/
+
+# Python (if any preprocessing scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+env/
