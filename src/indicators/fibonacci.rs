@@ -141,8 +141,9 @@ pub fn rolling_fibonacci_pivots(
     let mut result = Vec::new();
 
     for i in period - 1..close.len() {
-        let h = high[i - period + 1..=i].iter().fold(f64::NEG_INFINITY, |a, &b| a.max(b));
-        let l = low[i - period + 1..=i].iter().fold(f64::INFINITY, |a, &b| a.min(b));
+        let start_idx = i.saturating_sub(period - 1);
+        let h = high[start_idx..=i].iter().fold(f64::NEG_INFINITY, |a, &b| a.max(b));
+        let l = low[start_idx..=i].iter().fold(f64::INFINITY, |a, &b| a.min(b));
         let c = close[i];
 
         result.push(fibonacci_pivots(h, l, c));

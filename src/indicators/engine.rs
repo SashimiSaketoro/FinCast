@@ -441,9 +441,11 @@ mod tests {
 
         let features = indicators.to_feature_vec();
 
-        assert_eq!(features.len(), 3);
+        // Features: 2 RSI + 1 BB bandwidth + 1 fib_distance (default 0.0)
+        assert_eq!(features.len(), 4);
         assert_eq!(features[0], 45.5);
         assert_eq!(features[1], 48.2);
         assert_eq!(features[2], 0.15);
+        assert_eq!(features[3], 0.0);  // fib_distance default
     }
 }

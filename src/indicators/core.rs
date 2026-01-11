@@ -158,8 +158,8 @@ mod tests {
         let result = returns(&data);
 
         assert_eq!(result.len(), 2);
-        assert!((result[0] - 0.1).abs() < 1e-10);  // 10% gain
-        assert!((result[1] - (-0.1 / 1.1)).abs() < 1e-6);  // ~-4.5% loss
+        assert!((result[0] - 0.1).abs() < 1e-10);  // 10% gain: (110-100)/100
+        assert!((result[1] - (-5.0 / 110.0)).abs() < 1e-6);  // -4.545% loss: (105-110)/110
     }
 
     #[test]

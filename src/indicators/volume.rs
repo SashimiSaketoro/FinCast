@@ -109,8 +109,9 @@ pub fn mfi(high: &[f64], low: &[f64], close: &[f64], volume: &[f64], period: usi
     let mut result = Vec::new();
 
     for i in period..positive_mf.len() {
-        let pos_sum: f64 = positive_mf[i - period + 1..=i].iter().sum();
-        let neg_sum: f64 = negative_mf[i - period + 1..=i].iter().sum();
+        let start_idx = i.saturating_sub(period - 1);
+        let pos_sum: f64 = positive_mf[start_idx..=i].iter().sum();
+        let neg_sum: f64 = negative_mf[start_idx..=i].iter().sum();
 
         let mfi_val = if neg_sum == 0.0 {
             100.0
@@ -171,7 +172,8 @@ pub fn chaikin_money_flow(
         let mut mfv_sum = 0.0;
         let mut vol_sum = 0.0;
 
-        for j in i - period + 1..=i {
+        let start_idx = i.saturating_sub(period - 1);
+        for j in start_idx..=i {
             let clv = if high[j] == low[j] {
                 0.0
             } else {
@@ -204,7 +206,8 @@ pub fn vwma(close: &[f64], volume: &[f64], period: usize) -> Vec<f64> {
         let mut weighted_sum = 0.0;
         let mut vol_sum = 0.0;
 
-        for j in i - period + 1..=i {
+        let start_idx = i.saturating_sub(period - 1);
+        for j in start_idx..=i {
             weighted_sum += close[j] * volume[j];
             vol_sum += volume[j];
         }

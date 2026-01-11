@@ -144,8 +144,9 @@ pub fn williams_r(
     let mut result = Vec::new();
 
     for i in period - 1..close.len() {
-        let window_high = &high[i - period + 1..=i];
-        let window_low = &low[i - period + 1..=i];
+        let start_idx = i.saturating_sub(period - 1);
+        let window_high = &high[start_idx..=i];
+        let window_low = &low[start_idx..=i];
 
         let highest = window_high.iter().fold(f64::NEG_INFINITY, |a, &b| a.max(b));
         let lowest = window_low.iter().fold(f64::INFINITY, |a, &b| a.min(b));
@@ -170,7 +171,7 @@ mod tests {
     fn test_rsi() {
         let data = vec![
             44.0, 44.25, 44.5, 43.75, 44.0, 44.5, 45.0, 45.25,
-            45.5, 45.0, 44.5, 44.0, 43.5, 43.0
+            45.5, 45.0, 44.5, 44.0, 43.5, 43.0, 42.5  // Added 15th element
         ];
         let result = rsi(&data, 14);
 

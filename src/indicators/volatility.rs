@@ -100,7 +100,8 @@ pub fn historical_volatility(data: &[f64], period: usize, annualization_factor: 
     let mut result = Vec::new();
 
     for i in period - 1..log_returns.len() {
-        let window = &log_returns[i - period + 1..=i];
+        let start_idx = i.saturating_sub(period - 1);
+        let window = &log_returns[start_idx..=i];
         let mean = window.iter().sum::<f64>() / period as f64;
 
         let variance = window
@@ -177,11 +178,12 @@ pub fn donchian_channels(high: &[f64], low: &[f64], period: usize) -> DonchianCh
     let mut middle = Vec::new();
 
     for i in period - 1..high.len() {
-        let highest = high[i - period + 1..=i]
+        let start_idx = i.saturating_sub(period - 1);
+        let highest = high[start_idx..=i]
             .iter()
             .fold(f64::NEG_INFINITY, |a, &b| a.max(b));
 
-        let lowest = low[i - period + 1..=i]
+        let lowest = low[start_idx..=i]
             .iter()
             .fold(f64::INFINITY, |a, &b| a.min(b));
 
