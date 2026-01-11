@@ -24,6 +24,7 @@
 
 pub mod config;
 pub mod data;
+pub mod indicators;
 pub mod layers;
 pub mod models;
 pub mod utils;
@@ -31,6 +32,7 @@ pub mod utils;
 // Re-export key types
 pub use config::{ModelConfig, TrainingConfig};
 pub use data::{Asset, AssetFeatures, KrakenClient, PolymarketClient};
+pub use indicators::{IndicatorEngine, IndicatorSet, TimescaleConfig};
 pub use models::{STGMamba, STGMambaConfig};
 
 use burn::backend::{Autodiff, NdArray};

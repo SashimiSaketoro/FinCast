@@ -353,7 +353,7 @@ mod tests {
     #[test]
     fn test_mamba_forward() {
         let device = Default::default();
-        let config = MambaConfig::new(64, 16);
+        let config = MambaConfig::with_defaults(64, 16);
 
         let mamba = Mamba::<TestBackend>::new(&config, &device);
 
